@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verification Result</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🔍 Verification Result</h2>
+
+<p><b>Certificate ID:</b> <span id="cid"></span></p>
+<p><b>Name:</b> S. Kishore</p>
+<p><b>Issued On:</b> <span id="date"></span></p>
+
+<br>
+
+<button class="verified-btn">✔ Verified</button>
+
+</div>
+
+<script>
+// get data from localStorage
+document.getElementById("cid").innerText =
+localStorage.getItem("certId");
+
+document.getElementById("date").innerText =
+localStorage.getItem("issueDate");
+</script>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<div id="tsparticles"></div>
+
+<script>
+tsParticles.load("tsparticles", {
+  background: { color: "#000" },
+  particles: {
+    number: { value: 60 },
+    color: { value: "#FFD700" },
+    shape: { type: "circle" },
+    opacity: { value: 0.6 },
+    size: { value: 3 },
+    move: {
+      enable: true,
+      speed: 2
+    },
+    links: {
+      enable: true,
+      color: "#FFD700"
+    }
+  }
+});
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="box">
+<h2>Upload Certificate</h2>
+
+<input id="certId" placeholder="Certificate ID">
+<input id="mobile" placeholder="Mobile Number">
+
+<button onclick="generateOTP()">Generate OTP</button>
+
+</div>
+
+<script>
+function generateOTP() {
+    const certId = document.getElementById("certId").value;
+    const mobile = document.getElementById("mobile").value;
+
+    if (!certId || !mobile) {
+        alert("Enter Certificate ID and Mobile");
+        return;
+    }
+
+    // 🔐 Generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    // ✅ Store data
+    localStorage.setItem("certId", certId);
+    localStorage.setItem("otp", otp);
+
+    // ✅ Store issue date
+    const issueDate = new Date().toLocaleDateString();
+    localStorage.setItem("issueDate", issueDate);
+
+    alert("Your OTP is: " + otp);
+
+    // 👉 Redirect to OTP page
+    window.location = "otp.html";
+}
+</script>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<div id="tsparticles"></div>
+
+<script>
+tsParticles.load("tsparticles", {
+  background: { color: "#000" },
+  particles: {
+    number: { value: 60 },
+    color: { value: "#FFD700" },
+    shape: { type: "circle" },
+    opacity: { value: 0.6 },
+    size: { value: 3 },
+    move: {
+      enable: true,
+      speed: 2
+    },
+    links: {
+      enable: true,
+      color: "#FFD700"
+    }
+  }
+});
+</script>

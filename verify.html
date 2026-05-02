@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verify Certificate</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 🔥 PARTICLES BACKGROUND -->
+<div id="tsparticles"></div>
+
+<div class="box">
+
+<h2>🔍 Verify Certificate</h2>
+
+<input id="certId" placeholder="Enter Certificate ID">
+
+<button onclick="verifyNow()">Verify ✔</button>
+
+</div>
+
+<!-- 🔥 TS PARTICLES SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<script>
+// 🎯 RANDOM NAMES
+const names = [
+    "R. Kishore",
+    "A. Rahul",
+    "S. Priya",
+    "K. Arjun",
+    "M. Divya",
+    "P. Surya",
+    "D. Karthik",
+    "V. Meena"
+];
+
+// 🔍 VERIFY FUNCTION
+function verifyNow() {
+    const certId = document.getElementById("certId").value;
+
+    if (!certId) {
+        alert("Enter Certificate ID");
+        return;
+    }
+
+    // ✅ random name
+    const randomName = names[Math.floor(Math.random() * names.length)];
+
+    // ✅ store data
+    localStorage.setItem("certId", certId);
+    localStorage.setItem("name", randomName);
+
+    const issueDate = new Date().toLocaleDateString();
+    localStorage.setItem("issueDate", issueDate);
+
+    // 🔁 redirect
+    window.location.href = "verify-result.html";
+}
+
+// ✨ PARTICLES INIT
+tsParticles.load("tsparticles", {
+  background: { color: "#000" },
+  particles: {
+    number: { value: 60 },
+    color: { value: "#FFD700" },
+    shape: { type: "circle" },
+    opacity: { value: 0.6 },
+    size: { value: 3 },
+    move: {
+      enable: true,
+      speed: 2
+    },
+    links: {
+      enable: true,
+      color: "#FFD700"
+    }
+  }
+});
+</script>
+
+</body>
+</html>

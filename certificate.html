@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Certificate</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="certificate">
+
+<!-- HEADER -->
+<div class="header">
+
+<div class="emblem">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" width="70">
+</div>
+
+<div class="gov-title">
+<h2>GOVERNMENT OF INDIA</h2>
+<h4>Digital Certificate Verification System</h4>
+</div>
+
+</div>
+
+<hr>
+
+<!-- CONTENT -->
+<div class="content">
+
+<p><b>Certificate ID:</b> <span id="cid"></span></p>
+<p><b>Name:</b> <span id="name"></span></p>
+<p><b>Status:</b> Verified ✔</p>
+<p><b>Issued On:</b> <span id="date"></span></p>
+
+<br>
+
+<p class="desc">
+This certificate is digitally generated and verified under secure blockchain-enabled verification system.
+</p>
+
+</div>
+
+<!-- SIGNATURE -->
+<div class="signature-single">
+
+<div class="sig-box">
+<p class="sign-line">ambedkar br</p>
+<p><b>Dr. B. R. Ambedkar</b></p>
+<p>Chief Authority - Digital Verification</p>
+</div>
+
+</div>
+
+<!-- QR -->
+<div class="qr-box">
+<div id="qrcode"></div>
+</div>
+
+</div>
+
+<!-- ✅ DOWNLOAD BUTTON (MOVED INSIDE BODY) -->
+<div style="text-align:center; margin-top:20px;">
+<button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+// ✅ GET DATA
+document.getElementById("cid").innerText =
+localStorage.getItem("certId");
+
+document.getElementById("date").innerText =
+localStorage.getItem("issueDate");
+
+// 🔥 RANDOM NAME FROM VERIFY PAGE
+document.getElementById("name").innerText =
+localStorage.getItem("name") || "S. Kishore";
+
+// 🔳 QR CODE
+new QRCode(document.getElementById("qrcode"), {
+    text: "http://localhost:5500/verify.html?certId=" + localStorage.getItem("certId"),
+    width: 150,
+    height: 150
+});
+
+// 📄 DOWNLOAD PDF
+function downloadPDF() {
+    const element = document.querySelector(".certificate");
+
+    html2pdf().from(element).save("certificate.pdf");
+}
+</script>
+
+</body>
+</html>
